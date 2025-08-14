@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WHAT IS THIS</title>
+  <style>
+    :root { --bg: #0b1220; --fg: #ffffff; --accent: #22d3ee; }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      display: grid;
+      place-items: center;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    .wrap { text-align: center; padding: 24px; width: min(100%, 960px); }
+    h1 { font-size: clamp(42px, 9vw, 96px); margin: 0 0 24px; letter-spacing: 2px; }
+    button {
+      font-size: clamp(16px, 2.4vw, 20px);
+      font-weight: 800;
+      padding: 14px 28px;
+      border-radius: 14px;
+      border: 0;
+      color: #0b1220;
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(34, 211, 238, .35);
+    }
+    button:active { transform: translateY(1px); }
+
+    /* Video area keeps 16:9 ratio */
+    .video { width: min(100%, 960px); aspect-ratio: 16 / 9; display: none; }
+    .video iframe { width: 100%; height: 100%; border: 0; border-radius: 16px; }
+
+    .note { margin-top: 16px; color: #a7b0c0; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="wrap" id="hero">
+    <h1>WHAT IS THIS</h1>
+    <button id="btn">Click Me</button>
+  </div>
+
+  <div class="video" id="vid">
+    <!-- Iframe src di-set via JS ketika tombol diklik -->
+    <iframe id="player"
+      title="Rickroll"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen></iframe>
+  </div>
+
+  <script>
+    const btn = document.getElementById('btn');
+    const hero = document.getElementById('hero');
+    const vid = document.getElementById('vid');
+    const player = document.getElementById('player');
+
+    btn.addEventListener('click', () => {
+      // Gunakan URL embed + autoplay
+      const url = 'https://www.youtube.com/embed/xvFZjo5PgG0?autoplay=1&rel=0';
+      player.src = url;
+      hero.style.display = 'none';
+      vid.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
